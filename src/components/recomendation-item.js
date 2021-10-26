@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../ui/Card";
 import classes from "./recomendationItem.module.css";
 const RecomendationItem = (props) => {
+  const [showExpertise, setshowExpertise] = useState(false);
+  const toggleExpertisHandler = () => {
+    setshowExpertise((prevState)=>{
+        return !prevState;
+    });
+  };
   const meetups = [];
 
   for (const key in props.data) {
@@ -30,20 +36,26 @@ const RecomendationItem = (props) => {
         <li className={classes.item} key={recomendation.id}>
           <Card>
             <div className={classes.content}>
-              <h3>{recomendation.psychologist.name}</h3>
+              <h3>
+                <span>Doctor's Name:</span>
+                {recomendation.psychologist.name}
+              </h3>
             </div>
 
-            <div className={classes.content}>
-              <span>Expertise</span>
-              {recomendation.psychologist.expertise.map((item) => (
+           {showExpertise && <div className={classes.content}>
+              <h3>
+                <span>Expertise:</span>
+                {`${recomendation.psychologist.expertise}`}
+              </h3>
+              {/* {recomendation.psychologist.expertise.map((item) => (
                 <ul>
                   <li>{item}</li>
                 </ul>
-              ))}
-            </div>
+              ))} */}
+            </div>} 
 
             <div className={classes.actions}>
-              <button>show expertise</button>
+              <button onClick={toggleExpertisHandler}>{showExpertise ? 'HideExpertise': 'Show Expertise'}</button>
             </div>
           </Card>
         </li>
