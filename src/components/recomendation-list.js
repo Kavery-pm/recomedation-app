@@ -39,7 +39,19 @@ const DATA = [
       "source": "DB"
     }
   ]
+
+    
 const RecomendationList = () => {
+    useEffect(() => {
+        fetch(
+          "https://gist.githubusercontent.com/diegoacuna/0c7d5508a3af22dd1922eb98156bb402/raw/f5e87043c1e676354c9c723b0bfd23d2094a6be1/react_fullstack_recommendations_2.json")
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          });
+      }, []);
   return (
     <div className={classes.list}>
       <RecomendationItem data={DATA}></RecomendationItem>
@@ -48,13 +60,4 @@ const RecomendationList = () => {
 };
 export default RecomendationList;
 
-//   useEffect(() => {
-//     fetch(
-//       "https://cors-anywhere.herokuapp.com/https://gist.github.com/diegoacuna/3a2c8246ec6df3dbc9426b852dd8842b")
-//       .then((response) => {
-//         return response;
-//       })
-//       .then((data) => {
-//         console.log(data);
-//       });
-//   }, []);
+

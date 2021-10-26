@@ -4,8 +4,8 @@ import classes from "./recomendationItem.module.css";
 const RecomendationItem = (props) => {
   const [showExpertise, setshowExpertise] = useState(false);
   const toggleExpertisHandler = () => {
-    setshowExpertise((prevState)=>{
-        return !prevState;
+    setshowExpertise((prevState) => {
+      return !prevState;
     });
   };
   const meetups = [];
@@ -13,8 +13,6 @@ const RecomendationItem = (props) => {
   for (const key in props.data) {
     const meetup = {
       id: key,
-      //   source: key.source,
-      //   psychologist: key.psychologist,
       ...props.data[key],
     };
     meetups.push(meetup);
@@ -42,20 +40,19 @@ const RecomendationItem = (props) => {
               </h3>
             </div>
 
-           {showExpertise && <div className={classes.content}>
-              <h3>
-                <span>Expertise:</span>
-                {`${recomendation.psychologist.expertise}`}
-              </h3>
-              {/* {recomendation.psychologist.expertise.map((item) => (
-                <ul>
-                  <li>{item}</li>
-                </ul>
-              ))} */}
-            </div>} 
+            {showExpertise && (
+              <div className={classes.content}>
+                <h3>
+                  <span>Expertise:</span>
+                  {`${recomendation.psychologist.expertise}`}
+                </h3>
+              </div>
+            )}
 
             <div className={classes.actions}>
-              <button onClick={toggleExpertisHandler}>{showExpertise ? 'HideExpertise': 'Show Expertise'}</button>
+              <button onClick={toggleExpertisHandler}>
+                {showExpertise ? "HideExpertise" : "Show Expertise"}
+              </button>
             </div>
           </Card>
         </li>
