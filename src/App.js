@@ -1,11 +1,13 @@
+import Header from "./components/header";
+import Layout from "./components/Layout";
 import RecomendationList from "./components/recomendation-list";
 
 
 function App() {
   return (
-   <div>
-   <RecomendationList></RecomendationList>
-   </div>
+  <Layout>
+    <RecomendationList></RecomendationList>
+  </Layout>
   );
 }
 

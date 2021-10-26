@@ -3,7 +3,7 @@ import Card from "../ui/Card";
 import classes from "./recomendationItem.module.css";
 const RecomendationItem = (props) => {
   const meetups = [];
-  
+
   for (const key in props.data) {
     const meetup = {
       id: key,
@@ -22,26 +22,33 @@ const RecomendationItem = (props) => {
   const z = meetups.filter((a) => {
     return a.source === "UA";
   });
- const content = [...x, ...y, ...z];
+  const content = [...x, ...y, ...z];
 
-return(
+  return (
     <React.Fragment>
-         {content.map((recomendation) => (
-        <li className={classes.item}>
-            <Card>
-          <div className={classes.content}>
-            <h3>{recomendation.psychologist.name}</h3>
-          </div>
-          <div className={classes.content}>
-             <h2>Expertise</h2> 
-            <h3>{recomendation.psychologist.expertise}</h3>
-          </div>
-          </Card>
-      </li>))}
-      </React.Fragment>
-      ) 
-    
+      {content.map((recomendation) => (
+        <li className={classes.item} key={recomendation.id}>
+          <Card>
+            <div className={classes.content}>
+              <h3>{recomendation.psychologist.name}</h3>
+            </div>
 
- 
+            <div className={classes.content}>
+              <span>Expertise</span>
+              {recomendation.psychologist.expertise.map((item) => (
+                <ul>
+                  <li>{item}</li>
+                </ul>
+              ))}
+            </div>
+
+            <div className={classes.actions}>
+              <button>show expertise</button>
+            </div>
+          </Card>
+        </li>
+      ))}
+    </React.Fragment>
+  );
 };
 export default RecomendationItem;

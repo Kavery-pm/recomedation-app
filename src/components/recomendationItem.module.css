@@ -24,6 +24,9 @@
     font-size: 1.25rem;
     color: #2c292b;
   }
+  .content ul{
+    list-style: none;
+  }
   
   .actions {
     padding: 1.5rem;
