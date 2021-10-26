@@ -35,28 +35,23 @@ const RecomendationList = () => {
         const filteredRecomendation = [...x, ...y, ...z];
         setLoading(false);
         setloadedRecomendations(filteredRecomendation);
-      }).catch((error)=>{
-        console.log(error.message);
-        setError(error.message);
       })
+      .catch((error) => {
+        setError(error.message);
+      });
   }, []);
 
-  if(Loading && Error){
-    return<p>{Error}</p>
+  if (Loading && Error) {
+    return <p>{Error}</p>;
   }
-  if(Loading && !Error){
-    return<p>Loading</p>
+  if (Loading && !Error) {
+    return <p>Loading</p>;
   }
-  
- 
+
   return (
-    
     <div className={classes.list}>
-    
       <RecomendationItem data={loadedRecomendations}></RecomendationItem>
-      {!Error && <h1>ERROR</h1>}
     </div>
-    
   );
 };
 export default RecomendationList;
