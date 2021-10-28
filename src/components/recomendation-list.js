@@ -32,7 +32,14 @@ const RecomendationList = () => {
         const z = recomendations.filter((a) => {
           return a.source === "UA";
         });
-        const filteredRecomendation = [...x, ...y, ...z];
+
+        const filteredRecomendation = [x, y, z]
+          .reduce(
+            (r, a) => (a.forEach((a, i) => (r[i] = r[i] || []).push(a)), r),
+            []
+          )
+          .reduce((a, b) => a.concat(b));
+
         setLoading(false);
         setloadedRecomendations(filteredRecomendation);
       })
